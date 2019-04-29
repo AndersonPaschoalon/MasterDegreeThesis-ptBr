@@ -1,0 +1,407 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Traffic Generators Survey}\label{ap:traffic-gen-survey}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+This appendix contains the cut-content of chapter~\ref{ch:literature-review}, serving now as complementary material. In the first section we show an extensive survey on traffic generator tools, and on the second, some use-cases of traffic-generators validation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Traffic generator tools}
+
+
+In this section, we present a short review of many open-source tools available for synthetic traffic generation and benchmark. The aim in this section is to present the most mentioned tools in the literature and the most recent and advanced ones. On tables are presented a survey of the main features of such tools. Some free, but not open-source traffic generators are listed as well. Before present our survey, we refer to some tools mentioned in the literature, but we could not find source code and manual. 
+
+\textbf{BRUNO}\cite{bruno-paper} is traffic generator implemented aiming performance and accuracy on timings. It has many configurable parameters that allow emulation of many web server scenarios. \textbf{Divide and conquer}\cite{validate-trafficgen}: is a replay engine that works in a distributed manner. It can split traces among multiple commodity PCs, and reply packets, to produce realistic traffic. 
+
+Some others mentioned tools \cite{web-ditg} we were not able to find any reference of available features are: \textbf{UDPgen}, \textbf{Network Traffic Generator}, \textbf{Packet Shell}, \textbf{Real-Time Voice Traffic Generator}, \textbf{PIM-SM Protocol Independent Multicast Packet Generator}, \textbf{TTCP}, \textbf{SPAK, Packet Generator}, \textbf{TfGen}, \textbf{TrafGen} and \textbf{Mtools}. Table ~\ref{tab:traffic-gen-links} presents an updated list of links for download.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Traffic Generators - Feature Survey}
+
+
+Tables ~\ref{tab:packet-level-tg1}, ~\ref{tab:multi-level-tg2}, ~\ref{tab:app-level-tg3}, and ~\ref{tab:replay-tg1} is presented a survey of of the main features of such tools, such as support for Operational systems, protocols, stochastic functions available for traffic generation, and traffic generator class. Some free, but not open-source, traffic generators are listed as well. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKET-LEVEL TGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[ht!]
+\centering
+\caption{Summary of packet-level traffic generators.}
+\scalebox{0.7}{
+\begin{tabular}{ccccc}
+\hline
+\rowcolor[HTML]{9B9B9B} 
+\multicolumn{5}{c}{\cellcolor[HTML]{9B9B9B}\textbf{Packet-level Traffic Generators}} \\
+\rowcolor[HTML]{9B9B9B} 
+\textbf{\begin{tabular}[c]{@{}c@{}}Traffic\\ Generator\end{tabular}}    & \textbf{Operating System}                                                                                                      & \textbf{\begin{tabular}[c]{@{}c@{}}Network \\ Protocols\end{tabular}}                                                                                                                                                                               & \textbf{\begin{tabular}[c]{@{}c@{}}Available \\ stochastic distributions\end{tabular}}                                     & \textbf{Interface}                                                                         \\ \hline
+\textbf{D-ITG}                                                                   & \begin{tabular}[c]{@{}c@{}}Linux, Windows, \\ Linux Familiar, \\ Montavista, Snapgear\end{tabular}                             & \begin{tabular}[c]{@{}c@{}}IPv4-6, ICMP, TCP\\ UDP, DCCP, SCTP\end{tabular}                                                                                                                                                                         & \begin{tabular}[c]{@{}c@{}}constant, uniform, \\ exponential, pareto, \\ cauchy, normal,  \\ poisson, gamma\end{tabular}   & \begin{tabular}[c]{@{}c@{}}CLI, \\ Script, \\ API\end{tabular}                             \\
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} Ostinato}                                         & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Linux, Windows, \\ FreeBDS\end{tabular}}                                      & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Ethernet/802.3/LLC, \\ SNAP;  VLAN, (with QinQ); \\ ARP,  IPv4-6-Tunnelling;\\  TCP, UDP,  ICMPv4, \\ ICMPv6,  IGMP,  MLD; \\ HTTP,  SIP, RTSP,  NNTP,  \\ custom  protocol,  etc...\end{tabular}} & {\color[HTML]{000000} constant}                                                                                            & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}GUI,\\ CLI,\\ script,\\ API\end{tabular}} \\
+PackETH                                                                 & \begin{tabular}[c]{@{}c@{}}Linux, MacOS,\\ Windows\end{tabular}                                                                & \begin{tabular}[c]{@{}c@{}}Ehernet II, ethernet 802.3, \\ 802.1q,  QinQ, ARP,\\  IPv4-6,  UDP,  TCP, ICMP, \\ ICMPv6, IGMP\end{tabular}                                                                                                             & constant                                                                                                                   & CLI, GUI                                                                                   \\
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} Seagull}                                          & {\color[HTML]{000000} Linux, Windows}                                                                                          & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}IPv4-6, UDP, TCP, SCTP, \\ SSL/TLS and SS7/TCAP. \\ custom protocol\end{tabular}}                                                                                                                  & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}constant, \\ poisson\end{tabular}}                                        & {\color[HTML]{000000} CLI, GUI}                                                            \\
+Iperf                                                                   & \begin{tabular}[c]{@{}c@{}}Windows, Linux, \\ Android, MacOS X,\\ FreeBSD, OpenBSD,\\ NetBSD, VxWorks, \\ Solaris\end{tabular} & IPv4-6, UDP, TCP, SCTP                                                                                                                                                                                                                              & constant                                                                                                                   & CLI, API                                                                                   \\
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} BRUTE}                                            & {\color[HTML]{000000} Linux}                                                                                                   & {\color[HTML]{000000} IPv4-6, UDP, TCP}                                                                                                                                                                                                             & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}constant, poisson, \\ trimodal, exponential\end{tabular}}                 & {\color[HTML]{000000} CLI, script}                                                         \\
+SourcesOnOff                                                            & Linux                                                                                                                          & IPv4, TCP, UDP                                                                                                                                                                                                                                      & \begin{tabular}[c]{@{}c@{}}weibull, pareto, \\ exponential, normal\end{tabular}                                            & CLI                                                                                        \\
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} TG}                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Linux, FreeBSD, \\ Solaris SunOS\end{tabular}}                                & {\color[HTML]{000000} IPv4, TCP, UDP}                                                                                                                                                                                                               & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}constant, uniform, \\ exponential\end{tabular}}                           & {\color[HTML]{000000} CLI}                                                                 \\
+Mgen                                                                    & Linux(Unix), Windows                                                                                                           & IPv4-6, UDP, TCP, SINK                                                                                                                                                                                                                              & constant, exponential,                                                                                                     & CLI, Script                                                                                \\
+\rowcolor[HTML]{C0C0C0} 
+KUTE                                                                    & Linux 2.6                                                                                                                      & UDP                                                                                                                                                                                                                                                 & constant                                                                                                                   & kernel module                                                                              \\
+\begin{tabular}[c]{@{}c@{}}RUDE \& \\ CRUDE\end{tabular}                & \begin{tabular}[c]{@{}c@{}}Linux, Solaris SunOS, \\ FreeBSD\end{tabular}                                                       & IPv4, UDP                                                                                                                                                                                                                                           & constant                                                                                                                   & CLI                                                                                        \\
+\rowcolor[HTML]{C0C0C0} 
+NetSpec                                                                 & Linux                                                                                                                          & IPv4,UDP, TCP                                                                                                                                                                                                                                       & \begin{tabular}[c]{@{}c@{}}uniform, normal, log-normal, \\ exponential, poisson, \\ geometric,  pareto, gamma\end{tabular} & script                                                                                     \\
+Nping                                                                   & Windows, Linux, Mac OS X                                                                                                       & \begin{tabular}[c]{@{}c@{}}TCP, UDP, ICMP, \\ IPv4-6, ARP\end{tabular}                                                                                                                                                                              & constant                                                                                                                   & CLI                                                                                        \\
+\rowcolor[HTML]{C0C0C0} 
+MoonGen                                                                 & Linux                                                                                                                          & \begin{tabular}[c]{@{}c@{}}IPv4-6, IPsec,\\  ICMP, UDP, TCP\end{tabular}                                                                                                                                                                            & constant, poisson                                                                                                          & scipt API                                                                                  \\
+\begin{tabular}[c]{@{}c@{}}Dpdk \\ Pktgen\end{tabular}                  & Linux                                                                                                                          & \begin{tabular}[c]{@{}c@{}}IPv4, IPv6, ARP, \\ ICMP, TCP, UDP\end{tabular}                                                                                                                                                                          & constant                                                                                                                   & CLI, script API                                                                            \\
+\rowcolor[HTML]{C0C0C0} 
+LegoTG                                                                  & Linux                                                                                                                          & (depend on underlying tool)                                                                                                                                                                                                                         & (depend on underlying tool)                                                                                                & CLI, script                                                                                \\
+\begin{tabular}[c]{@{}c@{}}gen\_send/\\ gen\_recv\end{tabular}          & \begin{tabular}[c]{@{}c@{}}Solaris, FreeBSD, \\ AIX4.1, Linux\end{tabular}                                                     & UDP                                                                                                                                                                                                                                                 & constant                                                                                                                   & CLI                                                                                        \\
+\rowcolor[HTML]{C0C0C0} 
+mxtraf                                                                  & Linux                                                                                                                          & TCP, UDP, IPv4                                                                                                                                                                                                                                      & constant                                                                                                                   & GUI, script                                                                                \\
+\begin{tabular}[c]{@{}c@{}}Jigs Traffic \\ Generator (JTG)\end{tabular} & Linux                                                                                                                          & TCP, UDP, IPv4-6                                                                                                                                                                                                                                    & constant                                                                                                                   & CLI                                                                                        \\ \hline
+\end{tabular}
+}
+\label{tab:packet-level-tg1}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MULTI/FLOW-LEVEL TGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[ht!]
+\centering
+\caption{Summary of multi-level and flow-level traffic generators.}
+\scalebox{0.7}{
+\begin{tabular}{ccccc}
+\hline
+\rowcolor[HTML]{9B9B9B} 
+\multicolumn{5}{c}{\cellcolor[HTML]{9B9B9B}\textbf{Flow and Multi-level Traffic Generators}}                                                                                                                                                                                                                                                                                                                   \\
+\rowcolor[HTML]{9B9B9B} 
+\textbf{\begin{tabular}[c]{@{}c@{}}Traffic\\ Generator\end{tabular}} & \textbf{Operating System}                                                                          & \textbf{\begin{tabular}[c]{@{}c@{}}Network\\ Protocols\end{tabular}}                     & \textbf{Model}                                                                                             & \textbf{Interface}         \\ \hline
+Swing                                                                & Linux                                                                                              & \begin{tabular}[c]{@{}c@{}}IPv4, TCP, UDP,\\ HTTP, NAPSTER,\\ NNTP and SMTP\end{tabular} & \begin{tabular}[c]{@{}c@{}}Multi-level \\ auto-configurable \\ Ethernet\end{tabular}                       & CLI                        \\
+\rowcolor[HTML]{C0C0C0} 
+{\color[HTML]{000000} Harpoon}                                       & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}FreeBSD, Linux, \\ MacOS X, Solaris\end{tabular}} & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}TCP, UDP, IPv4,\\ IPv6\end{tabular}}    & {\color[HTML]{000000} \begin{tabular}[c]{@{}c@{}}Flow-level \\ auto-configurable \\ Ethernet\end{tabular}} & {\color[HTML]{000000} CLI} \\
+LiTGen                                                               & -                                                                                                  & -                                                                                        & Multi-level Wifi                                                                                           & -                          \\
+\rowcolor[HTML]{C0C0C0} 
+EAR                                                                  & Linu                                                                                               & \begin{tabular}[c]{@{}c@{}}IEEE 802.11, ICMP, UDP, \\ TCP, TFTP, Telnet\end{tabular}     & \begin{tabular}[c]{@{}c@{}}"Event Reproduction Ratio" techinique - \\ wireless IEEE 802.11\end{tabular}    & -                          \\ \hline
+\end{tabular}
+}
+\label{tab:multi-level-tg2}
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APPLICATION-LEVEL TGS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[ht!]
+\centering
+\caption{Summary of application-level traffic generators. }
+\scalebox{0.7}{
+\begin{tabular}{cccc}
+\hline
+\rowcolor[HTML]{9B9B9B} 
+\multicolumn{4}{c}{\cellcolor[HTML]{9B9B9B}Application-level Traffic Generators}                                                                                                                                                                                                                              \\ \hline
+\rowcolor[HTML]{9B9B9B} 
+\begin{tabular}[c]{@{}c@{}}Traffic\\ Generator\end{tabular} & Operating System                                                                                & Model                                                                                                                             & Interface \\ \hline
+GenSyn                                                      & Java Virtual Machine                                                                            & User-behavior emulation                                                                                                           & GUI       \\
+\rowcolor[HTML]{C0C0C0} 
+D-ITG                                                       & \begin{tabular}[c]{@{}c@{}}Linux, Windows, Linux \\ Familiar, Montavista, Snapgear\end{tabular} & \begin{tabular}[c]{@{}c@{}}Telnet, DNS, Quake3,\\ CounterStrike (active and inactive), \\ VoIP (G.711, G.729, G.723)\end{tabular} & CLI       \\
+Surge                                                       & Linux                                                                                           & Client/Server                                                                                                                     & CLI       \\
+\rowcolor[HTML]{C0C0C0} 
+Httperf                                                     & Linux                                                                                           & HTTP/1.0, HTTP/1.1                                                                                                                & CLI       \\
+VoIP Traffic Generator                                      & -                                                                                               & VoIP                                                                                                                              & CLI       \\
+\rowcolor[HTML]{C0C0C0} 
+ParaSynTG                                                   & -                                                                                               & HTTP workload properties                                                                                                          & CLI       \\
+NetSpec                                                     & LInux                                                                                           & \begin{tabular}[c]{@{}c@{}}HTTP, FTP, Telnet, Mpev video, \\ voice and video teleconference\end{tabular}                          & CLI       \\ \hline
+\end{tabular}
+}
+\label{tab:app-level-tg3}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% REPLAY ENGINES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[ht!]
+\centering
+\caption{Summary of replay-engines traffic generators.}
+\scalebox{0.7}{
+\begin{tabular}{ccc}
+\hline
+\rowcolor[HTML]{9B9B9B} 
+\multicolumn{3}{c}{\cellcolor[HTML]{9B9B9B}\textbf{Replay-Engines Traffic Generators}}                                                                           \\
+\rowcolor[HTML]{9B9B9B} 
+\textbf{\begin{tabular}[c]{@{}c@{}}Traffic\\ Generator\end{tabular}} & \textbf{Operating System}                                       & \textbf{Implementation} \\ \hline
+Ostinato                                                             & Linux, Windows, FreeBDS                                         & Software-only           \\
+\rowcolor[HTML]{C0C0C0} 
+PackETH                                                              & \begin{tabular}[c]{@{}c@{}}Linux, MacOS,\\ Windows\end{tabular} & Software-only           \\
+BRUNO                                                                & Linux                                                           & hardware-dependent      \\
+\rowcolor[HTML]{C0C0C0} 
+TCPReplay                                                            & Linux                                                           & Software-only           \\
+TCPivo                                                               & Linux                                                           & Software-only           \\
+\rowcolor[HTML]{C0C0C0} 
+\begin{tabular}[c]{@{}c@{}}NetFPGA \\ PacketGenerator\end{tabular}   & Linux                                                           & Hardware                \\
+\begin{tabular}[c]{@{}c@{}}NetFPGA \\ Caliper\end{tabular}           & Linux                                                           & Hardware                \\
+\rowcolor[HTML]{C0C0C0} 
+\begin{tabular}[c]{@{}c@{}}NetFPGA \\ OSTN\end{tabular}              & Linux                                                           & Hardware                \\
+\textbf{MoonGen}                                                     & Linux                                                           & Hardware-dependent      \\
+\rowcolor[HTML]{C0C0C0} 
+\textbf{DPDK Pktgen}                                                 & Linux                                                           & Hardware-dependent      \\
+\textbf{NFPA}                                                        & Linux                                                           & hardware-dependent      \\ \hline
+\end{tabular}
+}
+\label{tab:replay-tg1}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Packet-level traffic generators}
+
+
+\textbf{D-ITG}\cite{ditg-paper}\cite{web-ditg}: D-ITG (Distributed Internet Traffic Generator) is a platform capable to produce IPv4 and IPv6 traffic defined by IDT and PS probabilistic distributions such as constant, uniform, Pareto, Cauch, Normal, Poisson, Gamma, Weibull, and On/Off; both configurable and pre-defined for many applications, from Telnet, through online games. It provides many flow-level options of customization, like duration, start delay and number of packets, support to many link-layer and transport-layer protocols, options, sources and destinations addresses/ports. It has support for \acrshort{NAT} traversal, so it is possible to make experiments between two different networks separated by the cloud. D-ITG can also be used to measure packet loss, jitter, and throughput. D-ITG may be used through a \acrshort{CLI}, scripts, or a API, that can be used to create applications and remotely control other hosts through a daemon. 
+
+\textbf{Ostinato}\cite{web-ostinato}: Ostinato is a packet crafter, network traffic generator and analyzer with a friendly \acrshort{GUI} (“Wireshark in reverse” as the documentation says) and a Python API. This tool permits craft and sends packets of different protocols at different rates. Support Server/Client communication and a vast variety of protocols, from the link layer (such as 802.3 and \acrshort{VLAN}) to the application layer (such HTTP and IP).
+It is also possible to add any unimplemented protocols, through scripts defined by the user. 
+
+
+\textbf{Seagull}\cite{wp-seagull}\cite{web-seagull}: an Open Source Multi-protocol traffic generator 2009]: Seagull is a traffic generator and test open-source tool, released by HP. 
+It has support of many protocols, from link layer to application layer, and its support is easily extended, via XML dictionaries. As the documentation argues, the protocol extension flexibility is one of the main features. It supports high speeds, and is reliable, being tested through hundreds of hours. 
+It can also generate traffic using three statistical models: uniform(constant), best-effort and Poisson. 
+
+
+\textbf{BRUTE}\cite{web-brute}: Is a traffic generator that operates on the top of Linux 2.4-6 and 2.6.x, not currently being supported on newer versions. It also supports some stochastic functions (constant, poison, trimodal) for departure time burst, and can simulate VoIP traffic.
+
+
+\textbf{PackETH} \cite{web-packeth}: PackETH is GUI and CLI stateless packet generator tool for ethernet. It supports many adjustments of parameters, and many protocols as well, and can set MAC addresses.  
+
+\textbf{Iperf}\cite{web-iperf}: Ipef is a network traffic generator tools, designed for the measure of the maximum achievable bandwidth on IP networks, for both TCP and UDP traffic, but can evaluate delay, windows size, and packet loss. It has a GUI interface, called Jperf\cite{web-jperf}. There is also a JavaAPI, for automating tests s\cite{jperf-git}. Support IPv4 and IPv6.
+
+
+\textbf{NetPerf}\cite{web-netperf}: Netperf is a benchmark tool that can be used to measure the performance of many types of networks, providing tests for both unidirectional throughput and end-to-end latency. It has support for TCP, UDP, and \acrshort{SCTP}, both over IPv4 and IPv6. 
+
+
+\textbf{sourcesOnOff}\cite{sourcesonoff-paper} \cite{web-sourcesonoff}:  sourcesOnOff is a new traffic generator released on 2014, that aims to generate realistic synthetic traffic using probabilistic models to control on and off time of traffic flows. As shown on the paper, it is able to guarantee self-similarity, an has support to many probabilistic distributions for the on/off times: Weibull, Pareto, Exponential and Gaussian. Supports TCP and UDP over IPv4.
+
+
+\textbf{TG}\cite{web-tg}: TG is a traffic generator that can generate and receive one-way packet streams transmitted from the UNIX user level process between source and traffic sink nodes. A simple specification language controls it, that enables the craft of different lengths and interarrival times distributions, such as Constant, uniform, exponential and on/off(markov2). 
+
+\footnote{not open-source}\textbf{MGEN}\cite{web-mgen}: MGEN (Multi-Generator) is a traffic generator developed by the Naval Research Laboratory (NRL) PROTocol Engineering Advanced Networking (PROTEAN) Research Group. It can be used to emulate the traffic patterns of unicast and/or multicast UDP and TCP IP applications. It supports many different types of stochastic functions, nominated periodic, Poisson, burst jitter and clone which can control inter-departure times and packet size. 
+
+\textbf{KUTE}\cite{web-kute}: KUTE is a kernel level packet generator, designed to have a maximum performance traffic generator and receiver mainly for use with Gigabit Ethernet. It works in the kernel level, sending packets as fast as possible, direct to the hardware driver, bypassing the stack. However, KUTE works only on Linux 2.6, and has only be tested on Ethernet Hardware. Also, it only supports constant UDP traffic. 
+
+
+\textbf{RUDE \& CRUDE}\cite{web-rude-crude}: RUDE (Real-time UDP Data Emitter) and CRUDE (Collector for RUDE), are small and flexible programs which run on user-level. It has a GUI called GRUDE. It works only with UDP protocol.
+
+\footnote{not open-source}\textbf{NetSpec}\cite{web-netspec}: NetSpec is a tool designed to do network tests, as opposed to doing point to point testing. NetSpec provides a framework that allows a user to control multiple processes across multiple hosts from a central point of control, using daemons that implement traffic sources and sinks, along with measurement tools. Also, it can model many different traffic patterns and applications, such as maximum host rate, Constant Bit Rate (CBR), WWW, World Wide Web, FTP, File Transfer Protocol, telnet, MPEG video, voice, and video teleconference. 
+
+
+\textbf{Nping}\cite{web-nping}: active hosts, as a traffic generator for network stack stress testing, ARP poisoning, Denial of Service attacks, route tracing, etc. Nping CLI permits the users control over protocols headers. 
+
+\textbf{TCPreplay}\cite{web-tcpreplay}: TCPreplay is a user-level replay engine, that can use pcap files as input, and then forward, packets in a network interface. It can modify some header parameters as well. 
+
+
+\textbf{TCPivo}\cite{tcpivo-paper}\cite{web-tcpivo}: TCPivo is a high-speed traffic replay engine that is able to read traffic traces, and replay packets in a network interface, working at the kernel level. It is not currently supported kernel versions greater than 2.6. 
+
+\textbf{NetFPGA PacketGenerator}\cite{web-netfpgapacketgenerator}: NetFPGA Packet Generator is a hardware-based traffic generator and capture tool, build over the NetFPGA 1G, and open \acrshort{FPGA} platform with 4 ethernet interfaces of 1 Gigabit of bandwidth each. It is a replay engine tool which uses as input pcap files. It is able to accurately control the delay between the frames, with the default delay being the same in the pcap file. It is also able to capture packets and report statistics of the traffic. 
+
+
+\textbf{NetFPGA Caliper}\cite{web-caliper}: is a hardware-based traffic generator, build on NetFPGA 1G, built over NetThreads platform, an FPGA microprocessor which support threads programming. Different form NetFPGA Packet Generator, Caliper can produce live packets. It is written in C. 
+
+\textbf{NetFPGA OSNT}\cite{web-osnt}:  OSNT (Open Source Network Tester) is hardware based network traffic generator built over the NetFPGA 10G. As NetFPGA 1G, NetFPGA 10G is an FPGA platform with 4 ethernet interfaces, but with 10 Gigabits of bandwidth. OSNT is a replay engine and is loaded with pcap traces. 
+
+
+\textbf{Dpdk Pktgen}\cite{web-dpdk-pktgen}: Pktgen is a traffic generator measurer built over DPDK. DPDK is a development kit, a set of libraries and drivers for fast packet processing. DPDK was designed to run on any processor but has some limitation in terms of supported NICs, that can be found on its website.
+
+\textbf{MoonGen}\cite{moongen-paper}\cite{web-moongen}: MoonGen is a scriptable highspeed packet generator built over DPDK and LuaJIT. It can send packets at 10 Gbit/s, even with 64 bytes packets on a single CPU core. MoonGen can achieve this rate even if each packet is modified by a Lua script. Also, it provides accurate timestamping and rate control. It is able to generate traffic using several protocols ( IPv4, IPv6, IPsec, ARP, ICMP, UDP, and TCP), and can generate different inter-departure times, like a Poisson process and burst traffic. 
+
+\textbf{gen\_send/gen\_recv}\cite{web-gensend-genrecv}:  gen\_send and gen\_recv are simple UDP traffic generator applications. It uses UDP sockets. gen\_send can control features like desired data rate, packet size and inter-packet time. 
+
+\textbf{mxtraf}\cite{web-mxtraf}:  mxtraf enables a small number of hosts to saturate a network, with a tunable mixture of TCP and UDP traffic.
+
+\textbf{Jigs Traffic Generator (JTG)}\cite{web-jtg}: is a simple, accurate traffic generator. JTG process only sends one stream of traffic, and stream characteristics are defined only by command line arguments. It also supports IPv6.
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Application-level/Special-scenarios traffic generators}
+
+
+\footnote{not open-source}\textbf{ParaSynTG}\cite{parasyntg-paper}: application-level traffic generator configurable by input parameters, which considers most of the observes www traffic workload properties. 
+
+
+\footnote{not open-source}\textbf{GenSyn}\cite{web-gensyn}: network traffic generator implemented in Java that mimics TCP and UDP connections, based on user behavior. 
+
+\textbf{Surge}\cite{surge-paper}:  Surge is an application level workload generator which emulates a set of real users accessing a web server. It matches many empirical measurements of real traffic, like server file distribution, request size distribution, relative file popularity, idle periods of users and other characteristics. 
+
+\textbf{Httperf}\cite{web-httperf}: Is an application lever traffic generator to measure web server performance. It uses the protocol HTTP (HTTP/1.0 and HTTP/1.1), and offer many types of workloads while keeping track of statistics related to the generated traffic. 
+Its most basic operation is to generate a set of HTTP GET requests and measure the number of replies and response rate. 
+
+\textbf{VoIP Traffic Generator}:  it is a traffic generator written in Perl that creates multiple streams of traffic, aiming to simulate VoIP traffic.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Flow-level and multi-level traffic generators}
+
+\textbf{Harpoon}\cite{harpoon-paper}: Harpoon is a flow-based traffic generator, that can automatically extract form Netflow traces parameters, in order to generate flows that exhibit the same statistical characteristics measured before, including temporal and spatial characteristics. 
+
+\textbf{Swing}\cite{swing-paper} \cite{web-swing}: Swing is a closed-loop multi-layer and network responsive generator. It can read capture traces and captures the packet interactions of many applications, being able to models distributions for the user, application, and network behavior, stochastic and responsively. Swing can model user behavior, REEs, connection, packets, and network. 
+
+\footnote{not open-source}\textbf{LiTGen}(Lightweight Traffic Generator)\cite{litgen-paper} is an open-loop, multilevel traffic generator. It can model wireless network traffic in a peer user and application basis. This tool model the traffic in three different levels: packet level, object level (smaller parts of an application session), and session level.
+
+
+\footnote{not open-source}\textbf{EAR}\cite{ear-paper}: traffic generator that uses a technique called“EventReproduction Ratio” to mimic wireless IEEE 802.11 protocol behavior. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Others traffic generation tools}
+
+
+\textbf{NFPA}\cite{nfpa-paper}:  NFPA is a benchmark tool based on DPDK Pkgen, specialized in executing and automatize performance measurements over network functions. It works being directly connected to a specific device under tests. It uses built-in, and user-defined traffic traces and Lua scripts control and collect information of DPDK Pktgen. It has a command line and Web interface, and automatically plot the results. 
+
+\textbf{LegoTG}\cite{legotg-paper}:  LegoTG is a modular framework for composing custom traffic generation. It aims to simplify the combination on the use of different traffic generators and modulators on different testbeds, automatizing the process of installation, execution, resource allocation, and synchronization via a centralized orchestrator, which uses a software repository. It already has support to many tools, and to add support to new tools is necessary to add and edit two files, called TG block, and ExFile.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Traffic Generators -- Repository Survey}
+
+\sloppy
+\begin{table}[ht!]
+\centering
+\sloppy
+\caption{Links for the traffic generators repositories}
+\label{tab:traffic-gen-links}
+%\begin{tabular}{@{}ll@{}}
+\begin{tabularx}{\textwidth}{@{}ll@{} p{10.0cm}}
+\toprule
+\sloppy
+Traffic Generator       & Repository                                                                                                                                                                                                                \\ \midrule
+D-ITG                   & \href{http://traffic.comics.unina.it/software/ITG/}{http://traffic.comics.unina.it/software/ITG/}                                                                                                                         \\
+Ostinato                & \href{http://ostinato.org/}{http://ostinato.org/}                                                                                                                                                                         \\
+Seagull                 & \href{http://gull.sourceforge.net/}{http://gull.sourceforge.net/}                                                                                                                                                         \\
+BRUTE                   & \href{http://wwwtlc.iet.unipi.it/software/brute/ }{http://wwwtlc.iet.unipi.it/software/brute/ }                                                                                                                           \\
+PackETH                 & \href{http://packeth.sourceforge.net/packeth/Home.html}{http://packeth.sourceforge.net/packeth/Home.html}                                                                                                                 \\
+Iperf                   & \href{https://iperf.fr/}{https://iperf.fr/}                                                                                                                                                                               \\
+NetPerf                 & \href{http://www.netperf.org/netperf/}{http://www.netperf.org/netperf/}                                                                                                                                                   \\
+sourcesOnOff            & \href{http://www.recherche.enac.fr/~avaret/sourcesonoff}{http://www.recherche.enac.fr/~avaret/sourcesonoff}                                                                                                               \\
+TG                      & \href{http://www.postel.org/tg/}{http://www.postel.org/tg/}                                                                                                                                                               \\
+MGEN*                   & \href{http://www.nrl.navy.mil/itd/ncs/products/mgen }{http://www.nrl.navy.mil/itd/ncs/products/mgen }                                                                                                                     \\
+KUTE                    & \href{http://caia.swin.edu.au/genius/tools/kute/}{http://caia.swin.edu.au/genius/tools/kute/}                                                                                                                             \\
+RUDE \& CRUDE            & \href{http://rude.sourceforge.net/}{ http://rude.sourceforge.net/}                                                                                                                                                        \\
+Pktgen                  & \href{http://www.linuxfoundation.org/collaborate/workgroups/networking/pktgen}{http://www.linuxfoundation.org/collaborate/workgroups/networking/pktgen}                                                                   \\
+NetSpec                 & \href{http://www.ittc.ku.edu/netspec/}{http://www.ittc.ku.edu/netspec/}                                                                                                                                                   \\
+Nping                   & \href{https://nmap.org/nping/ }{https://nmap.org/nping/}                                                                                                                                                                  \\
+TCPreplay               & \href{http://tcpreplay.appneta.com/}{http://tcpreplay.appneta.com/}                                                                                                                                                       \\
+TCPivo                  & \href{http://www.thefengs.com/wuchang/work/tcpivo/}{http://www.thefengs.com/wuchang/work/tcpivo/}                                                                                                                         \\
+NetFPGA PacketGenerator & \href{https://github.com/NetFPGA/netfpga/wiki/PacketGenerator}{https://github.com/NetFPGA/netfpga/wiki/PacketGenerator}                                                                                                   \\
+NetFPGA Caliper         & \href{https://github.com/NetFPGA/netfpga/wiki/PreciseTrafGen}{https://github.com/NetFPGA/netfpga/wiki/PreciseTrafGen}                                                                                                     \\
+NetFPGA OSNT            & \href{https://github.com/NetFPGA/OSNT-Public/wiki/OSNT-Traffic-Generator}{https://github.com/NetFPGA/OSNT-Public/wiki/OSNT-Traffic-Generator}                                                                             \\
+DPDK Pktgen             & \href{http://pktgen.readthedocs.io/en/latest/getting_started.html}{http://pktgen.readthedocs.io/en/latest/getting\_started.html}                                                                                          \\
+MoonGen                 & \href{https://github.com/emmericp/MoonGen}{https://github.com/emmericp/MoonGen}                                                                                                                                           \\
+gen\_send/gen\_recv       & \href{http://www.citi.umich.edu/projects/qbone/generator.html}{http://www.citi.umich.edu/projects/qbone/generator.html}                                                                                                   \\
+mxtraf                  & \href{http://mxtraf.sourceforge.net/}{http://mxtraf.sourceforge.net/}                                                                                                                                                     \\
+JTG                     & \begin{tabular}[c]{@{}l@{}}\href{https://sourceforge.net/projects/iperf/files/}{https://sourceforge.net/projects/iperf/files/}\\ \href{https://github.com/AgilData/jperf}{https://github.com/AgilData/jperf}\end{tabular} \\
+GenSyn                  & \href{http://www.item.ntnu.no/people/personalpages/fac/poulh/gensyn}{http://www.item.ntnu.no/people/personalpages/fac/poulh/gensyn}                                                                                       \\
+SURGE                   & \href{http://cs-www.bu.edu/faculty/crovella/surge_1.00a.tar.gz}{http://cs-www.bu.edu/faculty/crovella/surge\_1.00a.tar.gz}                                                                                                \\
+Httperf                 & \href{https://linux.die.net/man/1/httperf}{https://linux.die.net/man/1/httperf}                                                                                                                                           \\
+VoIP Traffic Generator  &    \href{https://sourceforge.net/projects/voiptg/}{https://sourceforge.net/projects/voiptg/}                                                                                                                                                                                                                       \\
+Harpoon                 & \href{http://cs.colgate.edu/~jsommers/harpoon/}{http://cs.colgate.edu/~jsommers/harpoon/}                                                                                                                                 \\
+Swing                   & \href{http://cseweb.ucsd.edu/~kvishwanath/Swing/}{http://cseweb.ucsd.edu/~kvishwanath/Swing/}                                                                                                                             \\
+NFPA                    &                                                                                                                                                                                                                           \\
+LegoTG                  &                                                                                                                                                                                                                           \\ \bottomrule
+\end{tabularx}
+%\end{tabular}
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Validation of Ethernet traffic generators: some use cases}
+
+
+
+
+In this section, we list some use cases of validation of Ethernet traffic generators. Our validation methods used in chapter 4 and 5 were based on them. We are going to present seven different study cases on validation of related traffic generators. They are Swing,   Harpoon [Sommers et al. 2004], D-ITG [Botta et al. 2012], sourcesOnOff  [Varet2014], MoonGen [Emmerich et al.2015], LegoTG [Bartlett e Mirkovic2015] and NFPA [Csikor et al. 2015].
+
+\subsection{Swing}
+
+Swing\cite{swing-paper} is at present, one of the primary references of realistic traffic generation. The authors extracted bidirectional metrics from a network link of synthetic traces. Their goals were to get realism, responsiveness, and randomness. They define realism as a trace that reflects the following characteristics of the original:
+
+Packet inter-arrival rate and burstiness across many time scales;
+\begin{itemize}
+\item Packet size distributions;
+\item Flow characteristics as arrival rate and length distributions;
+\item Destination IPs and port distributions.
+\end{itemize}
+
+The traffic generator uses a structural model the account interactions between many layers of the network stack. Each layer has many control variables, which is randomly generated by a stochastic process. They begin the parameterization, classifying \cite{web-libpcap} \textit{pcap} files with the data; they can estimate parameters.
+
+They validate the results using public available traffic traces, from \cite{web-mawi} and CAIDA\cite{web-caida}. On the paper, the authors focuses on  the validation metrics below:
+
+\begin{itemize}
+\item Comparison of estimated parameters of the original and swing generated traces;
+\item Comparison of aggregate and per-application bandwidth and packets per seconds;
+\item QoS metrics such as two-way delay and loss rates;
+\item Scaling analysis, via Energy multiresolution energy analysis.
+\end{itemize}
+
+To the vast majority of the results, both original and swing traces results were close to each other. Thus, Swing was able to match aggregate and burstiness metrics, per byte and per packet, across many timescales.
+
+\subsection{Harpoon}
+
+Harpoon\cite{harpoon-validation}\cite{harpoon-paper} is a traffic generator able to generate representative traffic at IP flow level. It can generate TCP and IP with the same byte, packet, temporal and spatial characteristics measured at routers. Also, Harpoon is a self-configurable tool, since it automatically extracts parameters from network traces. It estimates some parameters from original traffic trace: file sizes, inter-connection times, source and destination IP addresses, and the number of active sessions. 
+
+As proof of concept \cite{harpoon-validation}, the authors compared statistics from the original, and harpoon’s generated traces. The two main types of comparisons: diurnal throughput, and stochastic variable CDF and frequency distributions. Diurnal throughput refers to the average bandwidth variation within a day period. In a usual network, during the day the bandwidth consumption is larger than the night. Also, they compared:
+
+\begin{itemize}
+\item CDF of bytes transferred per 10 minutes
+\item CDF of packets transferred per 10 minutes
+\item CDF of inter-connection time
+\item CDF of file size
+\item CDF of flow arrivals per 1 hour
+\item Destination IP address frequency
+\end{itemize}
+
+In the end, they showed the differences in throughput evaluation of a Cisco 6509 switch/router using Harpoon and a constant rate traffic generator. Harpoon was proven able to give close CDFs, frequency and diurnal throughput plots compared to the original traces. Also, the results demonstrated that Harpoon provides a more variable load on routers, compared to constant rate traffic. It indicates the importance of using realistic traffic traces on the evaluation of equipment and technologies.
+
+\subsection{D-ITG}
+
+
+D-ITG\cite{ditg-paper} is a network traffic generator, with many configurable features. The tool provides a platform that meets many emerging requirements for a realistic traffic generation. For example, multi-platform, support of many protocols, distributed operation, sending/receiving flow scalability, generation models, and analytical model based generation high bit/packet rate. You can see different analytical and models and protocols supported by D-ITG at table~\ref{tab:packet-level-tg1}.
+
+To the evaluation of realism on analytical model parameterization of D-ITG, the authors used a synthetic replication of a eight players's LAN party of Age of Mythology\footnote{\href{https://www.ageofempires.com/games/aom/}{https://www.ageofempires.com/games/aom/}}. They have captured traffic flows during the party,  then, they modeled its packet size and inter-packet time distributions. They show that the synthetic traffic and the analytical model have similar curves of packet size and inter-packet time; thus it can approximate the empirical data. Also, the bit rate's mean and the standard deviation of the empirical and synthetic data are similar.
+
+\subsection{sourcesOnOff}
+
+Varet et al.\cite{sourcesonoff-paper} create an application implemented in C, called SourcesOnOff. It models the activity interval of packet trains using probabilistic distributions. To choose the best stochastic model, the authors had captured traffic traces using TCPdump. Then the developed tool that could configure out what distribution (Weibull, Pareto, Exponential, Gaussian, etc.) is better to the original traffic traces. They used the Bayesian Information Criterion (BIC) for distance assessment and tested the smaller BIC for each distribution, insuring a good correlation between the original and generated traces and self-similarity.  
+
+The validation methods used on sourcesOnOff are:
+
+\begin{itemize}
+\item A visual comparison between On time and Off time of the original trace and the stochastic fitting;
+\item QQplots, which aim to evaluate the correlation between inter-trains duration of real and generated traffic;
+\item Measurement of the measured throughput's autocorrelation~\ref{ap:revision-probability} of the real and synthetic traffic;
+\item Hurst exponent computation of the real and the synthetic trace;
+\end{itemize}
+
+The results pointed to an excellent stochastic fitting, better for On-time values. On the other hand, the correlation value of the QQplot was more significant on the Off time values (99.8\% versus 97.9\%). In the real and synthetic traces, the throughput's autocorrelation  remained between an upper limit of 5\%. Finally, the ratio between the evaluated Hurst exponent always remained smaller than 12%.
+
+\subsection{MoonGen}
+
+MoonGen\cite{moongen-paper} is a high-speed scriptable paper capable of saturating 10 GnE link with 64 bytes packets, using a single CPU core. The authors built it over DPDK and LuaJit, enabling the user to have high flexibility on the crafting of each packet, through Lua scripts. It has multi-core support and runs on commodity server hardware. MoonGen also can test latency with sub-microsecond precision and accuracy, using hardware timestamping of modern NICs cards. The Lua scripting API enable the implementation and high customization along with high-speed. This includes the controlling of packet sizes and inter-departure times. 
+
+The authors evaluated this traffic generator focused on throughput metrics, rather than others. Also, they have small packet sizes (64 bytes to 256), since the per-packet costs dominate. In their work, they were able to surpass 15 Gbit/s with an XL71040GbENIC. Also, they achieve throughput values close to the line rate with packets of 128 bytes, and 2CPU cores.
+
+\subsection{LegoTG}
+
+Bartlett et al.\cite{legotg-paper} implemented a modular framework for composing custom traffic generation, called LegoTG. As argued by the authors (and by our present work), automation of many aspects of traffic generation is a desirable feature. The process of how to generate proper background traffic may become research by itself. Traffic generators available today offer a single model and a restricted set of features into a single code base, makes customization difficult. 
+
+The primary purpose of their experiment was to show how LegoTG could generate background traffic, only. Also, they showed how realistic background traffic could influence research conclusions. The test chosen is one of the use cases proposed for Swing\cite{background-traffic-matter}, and evaluated the error on bandwidth estimation of different measurement tools. It showed that LegoTG could provide a secure and custom traffic generation.
+
+

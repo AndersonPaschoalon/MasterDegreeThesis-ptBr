@@ -1,0 +1,201 @@
+\input{_packages}
+\input{docs/_macros}
+\makeglossaries
+\loadglsentries{docs/_acronym.tex}
+
+%\loadglsentries{00_Acronyms}
+%\makeglossaries
+%\input{00_Acronyms}
+
+%\newcommand{\breakcell}[2][c]{%
+%  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+%\usepackage{algpseudocode,algorithm,algorithmicx}
+%\newcommand*\DNA{\textsc{dna}}
+%\newcommand*\Let[2]{\State #1 $\gets$ #2}
+%\algrenewcommand\algorithmicrequire{\textbf{Precondition:}}
+%\algrenewcommand\algorithmicensure{\textbf{Postcondition:}}
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+
+\titulo{\ThesisTitle
+
+\vspace{0.7cm} \TituloDaTese
+}
+\autor{\Author}
+\local{CAMPINAS}
+\data{\Year}
+
+% ---- COMPILA O INDICE  ----
+\makeglossaries
+\makeindex
+%\makenomenclature
+
+% ---- INÍCIO DO DOCUMENTO ----
+\begin{document}
+
+% ---- RETIRA O ESPAÇO EXTRA ENTRE AS FRASES ----
+\frenchspacing
+
+% ---- ELEMENTOS PRÉ-TEXTUAIS ----
+\pretextual
+\pagenumbering{gobble}
+
+% ---- CAPA ----
+\imprimircapa
+
+% ---- FOLHA DE ROSTO ---- 
+% (o * indica que haver\'{a} a ficha catalogr\'{a}fica)
+%\setcounter{page}{1}
+\imprimirfolhaderosto
+%% \begin{fichacatalografica}
+%    \vspace*{\fill}
+%    \begin{center}
+%        \textsc{Inclua aqui o pdf com a ficha catalogr\'{a}fica fornecida pela BAE.}
+%    \end{center}
+%    \vspace*{\fill}
+%% \includepdf[pages={1}]{docs/ficha-catalografica-protocolo.pdf}
+%\includepdf{ficha-catalografica.pdf}
+%% \end{fichacatalografica}
+\newpage
+
+% ---- ATA DA DEFESA----
+%\vspace*{\fill}
+%\begin{center}
+%    \textsc{Inclua aqui a folha de assinaturas.}
+%\end{center}
+\AtaDeDefesa
+%\vspace*{\fill}
+\newpage
+%\includepdf[pagecommand={\thispagestyle{plain}}]{folha-assinaturas.pdf}	
+%\cleardoublepage
+
+% ---- DEDICATÓRIA ----
+\begin{dedicatoria}
+\vspace*{\fill}
+\centering
+\noindent
+\Dedicatoria
+\vspace*{\fill}
+\end{dedicatoria}
+
+% ---- AGRADECIMENTOS ----
+\begin{agradecimentos}
+\Acknowledgements
+\end{agradecimentos}
+
+% ---- EPÍGRAFE ----
+\begin{epigrafe}
+\vspace*{\fill}
+\begin{flushright}
+\begin{minipage}{9.9cm}
+\Epigrafe
+\end{minipage}
+\end{flushright}
+\begin{flushright}
+\textit{\EpigrafeAuthor}
+\end{flushright}
+\end{epigrafe}
+
+% --- RESUMOS ---
+\begin{resumo}
+\Abstract
+\newpage
+\begin{otherlanguage*}{english}
+\begin{center}{\ABNTEXchapterfont\huge Resumo}\end{center}
+\Resumo
+\end{otherlanguage*}
+\end{resumo}
+
+% ---- LISTA DE ILUSTRAÇÕES ----
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\newpage
+%\cleardoublepage
+
+% ---- LISTA DE TABELAS ----
+\pdfbookmark[0]{ \listtablename}{lot}
+\listoftables*
+\newpage
+%\printglossary
+%\cleardoublepage
+
+% ----LISTA DE ACRONIMOS ----
+%\printglossary[type=\acronymtype]
+%\newpage
+\clearpage
+\printglossary[type=\acronymtype]
+\printglossary
+\newpage
+
+
+
+% --- INSERIR SUMARIO ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+% ---
+
+%\input{acronyms}
+%\renewcommand{\nomname}{Acronyms and Abbreviations List}
+%%\pdfbookmark[0]{\nomname}{las}
+%\printnomenclature
+\cleardoublepage
+% ---
+\pagenumbering{arabic}
+% \setcounter{page}{17}
+
+% ---- ELEMENTOS TEXTUAIS ----
+\textual
+
+% ---- Introdu\c{c}\~{a}o ----
+\interfootnotelinepenalty=10000
+\sloppy
+\include{docs/chapter1}
+\include{docs/chapter2}
+\include{docs/chapter3}
+\include{docs/chapter4}
+%\bookmarksetup{startatroot}%
+\include{docs/chapter5}
+\include{docs/chapter6}
+\include{docs/chapter7}
+
+% ---- ELEMENTOS PÓS-TEXTUAIS ----
+\postextual
+
+% ---- REFERÊNCIAS BIBLIOGRÁFICAS ----
+%\bibliography{tese}
+%\bibliographystyle{ieeetr}
+\bibliography{bibliography}
+
+% ---- APENDICES ----
+\begin{apendicesenv}
+\partapendices
+\include{docs/appendix/appendixA}
+\include{docs/appendix/appendixB}
+\include{docs/appendix/appendixC}
+\include{docs/appendix/appendixD}
+\include{docs/appendix/appendixE}
+\include{docs/appendix/appendixF}
+%\include{docs/appendix/todo}
+\end{apendicesenv}
+% ---
+
+% ---- Anexos ----
+%\begin{anexosenv}
+%\partanexos
+%\chapter{Primer Anexo}
+%\lipsum[30]
+% % %\chapter{Second Anexo}
+% % %\lipsum[31]
+% % %\chapter{Third Anexo}
+% % %\lipsum[32]
+%\end{anexosenv}
+
+% ---- INDICE REMISSIVO ----
+
+%\indexprologue{\small In this index you’ll find only famous people’s names}
+\printindex
+
+
+\end{document} 

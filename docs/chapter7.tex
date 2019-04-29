@@ -1,0 +1,31 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Final Conclusions}\label{ch:conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+In this dissertation, we discuss our process of conceiving, researching, definition and development and validation of a realistic traffic generator able to fulfill gaps others proposals have not, and achieve results comparable to open-source suggestions.  We followed a spiral process, as defined in the introduction(figure ~\ref{fig:dev-cicle}, chapter~\ref{ch:introduction}).  After defining the scope of our research, we start by looking at related works on literature, to gain insights about the state of things and limitations of current solutions. We find the no available traffic generator solution, is at the same time:
+
+\begin{itemize}
+\item Autoconfigurable;
+\item Produces Realistic Traffic;
+\item Enables Traffic Customization;
+\item Extensibility.
+\end{itemize}
+
+At this point, we defined the requirement list,  an architecture using UML,  and,  a prototype (presented on the qualification exam). Next, we continue to search for more techniques and methods that could be applied to solve our tasks and improve the results.  We researched many topics that at the end did not fit our intentions, such as Machine Learning and Neural Networks. However, others such as Linear regression, maximum likelihood, and information criteria were indeed satisfactory. Many ideas we had, were inspired by previous researches, such as Harpoon, Swing, sourcesOnOff, and LegoTG.  Again, we planned a methodology, procedure, and validate these ideas, and codded.  SIMITAR evolution continued with incremental upgrades until we reach the process presented in the chapter~\ref{ch:architecture}. Also, along with the developed software, we have documented our findings over the literature and open-source community. The more-relevant subjects for the understanding of our research; to mention (i) traffic generator tools, (ii) network traffic modeling; (iii) validation of traffic generators have been documented in chapter~\ref{ch:literature-review}. Although, whether necessary, concepts were introduced in other parts of the text -- especially chapter~\ref{ch:modeling-evaluation}.  Also, we have saved the cut-content on appendix~\ref{ap:traffic-gen-survey}. 
+
+In Chapter~\ref{ch:modeling-evaluation}, we achieve a significant contribution to our work, which shows that the information criteria AIC and BIC are efficient analytic methods for select models for inter-packet times. Both can infer a good model, even evaluated according to different types of metrics, without any simulation. Also, we show evidence that for Ethernet traffic of data, choosing AIC and BIC make almost no difference. As far as is our knowledge, this is a complete study on the use of AIC and BIC on inter-packet times modeling of Ethernet traffic.
+
+Our tests performed in Chapter~\ref{ch:modeling-evaluation} intend to focus on packet-level, flow-level, and scaling metrics. The results were notably good at the flow-level. SIMITAR were able to replicate the flow-cumulative distribution with high accuracy, and with libtins, the number of flows as well. When Iperf was the traffic generator API, the number of flows was more substantial, because it establishes additional connections for signaling. On scaling and packet metrics, the results still have to be improved. Iperf as the traffic generator tool, still being limited, has proved to be efficient on replication the scaling characteristics for the Skype traffic. Since it establishes socket connections to generate the traffic, we believe that this fact makes it accurate on replication traffic from applications.
+
+In the end, we were able to implement a functional implementation of the solution proposed in Chapter ~\ref{ch:introduction}.  
+\begin{itemize}
+\item SIMITAR was able to create synthetic traffic, based on our models, replicating wich good results flow-level characteristics, fractal and scaling characteristics as well;
+\item SIMITAR is auto-configurable, sparing user time on conceiving parameterization, validation, and implementation of a good traffic model;
+\item It enables flexible traffic customization. The user may program his custom traffic, creating a custom Compact Trace Descriptor, without having to use any Traffic Generation API.  
+\item SIMITAR decouples the modeling and traffic generation layer completely. SIMITAR is fully extensible, relying on the implementation of just a C++ class.  Our current implementation use two very distinct packet-crafters: libtins, a C++ library designed for the application of sniffers and traffic generators, and Iperf, a traffic generator used to bandwidth measurements. 
+\end{itemize}
+
+Finally, we created a list of improvements and future works(chapter~\ref{ch:future-work}), aiming the development of the software, including, performance better processing time and packet generation, and the realism on the traffic generated. The higher bottleneck of the project resides on processing performance. For processing huge pcap files, it still takes a prohibitive amount of time. The results on realism, even with much room for improvement, already have a good quality. With the proposed future works we believe to be possible overcome the current limitations.
+

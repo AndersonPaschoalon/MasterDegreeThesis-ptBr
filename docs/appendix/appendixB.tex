@@ -1,0 +1,45 @@
+\chapter{Computer Networks Review}
+\label{ap:networks}
+
+\section{Network Stack}
+
+Network Stack\cite{kurose} or Protocol stack is the implementation of computer networks, where a known set of protocols are responsible for delivering the data.  The Stack is composed of five layers: Application, Transport, Network, Link and Physical layer.
+\begin{itemize}
+    \item \textit{\textbf{Application-layer}}: This layer is responsible for delivery to the processes the data.This layers deliver \textbf{Data}. Some protocols are HTTP, HTTPS, Telnet, DNS, FPT, and SMTP.
+    \item \textit{\textbf{Transport-layer}}: It is responsible for establishing the communication between hosts (end-to-end communication) and deliver reliability to the data. This layer delivers \textbf{Segments}. The main protocols are TCP and UDP.
+    \item \textit{\textbf{Newtwork-layer}}: It is responsible for the path determination and addressing between the end-points. This layer delivers \textbf{Packets}. As examples of protocols we have IP (IPv4 and IPv6), and ICMP. 
+    \item \textit{\textbf{Link-layer}}: It is responsible for the communication and data delivery between hosts and adjacent nodes on LANs and WANs. This layer delivers \textbf{Frames}. Some protocols are \acrshort{ARP}, \acrshort{MAC}(Ethernet), and Wi-Fi (IEEE 802.11) protocols, Bluetooth protocols, and ZigBee(IEEE 802.15) protocols. 
+    \item \textit{\textbf{Physical-layer}}: This layer is the hardware implementation of the Link-layer protocols, and is responsible for the bit transmission. 
+\end{itemize}
+
+\section{Software Defined Networking (SDN)}
+
+Software Defined Network\cite{sdn-survey} is a network achitecture where the forwarding plane(switches and routers, the data plane), and the network control logic (networking policies, the control plane) are separated, introducing the ability of program the network.  SDN architecture has four main pillars:
+\begin{enumerate}[label=\roman*]
+    \item The control plane and the data plane are decoupled: control functionalities are removed from network devices;
+    \item The forwarding policies are flow-based, instead of destination-based; 
+    \item The logic resides on an external entity, the Network Operational System(\acrshort{NOS});
+    \item The network in programmable through applications that runs on the NOS.
+\end{enumerate}
+The most consolidate protocol that does the communication between the control plane and the data plane is OpenFlow. As examples of Controllers or NOS, we have OpenDayLight and Beacon. 
+
+
+\section{Network Function Virtualization (NFV)}
+
+Network Function Virtualization (NFV)\cite{nfv-survey} is a concept and architecture that leveraging \acrshort{IT} virtualization technologies, aims to consolidate proprietary and hardware-based middleboxes, such as firewalls, WAN accelerators, routers, and load-balancers into commodity hardware, such as x86 servers, and high-volume switches and storages. NFV architecture has three main layers:
+\begin{itemize}
+    \item \textit{\textbf{\acrshort{NFVI} (NFV Infrastructure)}}: This layer comprehends the actual physical network infrastructure, a virtualization layer, and virtualized resources of computing, storage, and networking;
+    \item \textit{\textbf{VNF-layer (Virtual Network Functions Layer)}}: this is the layer where the virtualized network functions run, and consume resources provided by the NFVI.
+    \item \textit{\textbf{\acrshort{MANO} (Management and Orchestration)}}: On this layer resides the NFV Orchestrator, the VNF manager, and the Virtualized Infrastructure Manager. 
+\end{itemize}
+
+
+\section{Internet of Things (IoT)}
+
+
+Internet of Things(IoT)\cite{iot-ieee} can be defined as "A network of items -- each embedded with sensors -- which are connected to the Internet."\cite{iot-ieee}. The architecture of IoT has three main layers: Applications, Networking and Data-communication, and Sensing. 
+
+
+
+
+
